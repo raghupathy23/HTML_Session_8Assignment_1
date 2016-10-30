@@ -1,2 +1,1 @@
-# HTML_Session_8Assignment_1
-HTML_Session_8Assignment_1
+Create one form having registration and student login fields for course.
