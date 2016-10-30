@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Create one form having registration and student login fields for course</title>
+	<!-- Include Javascript File in a Script Tag --> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<style>
+		#container {
+			width: 50%;
+			margin: 0 auto;
+			padding: 10px;
+			height: 350px;
+			background: #eeeeee;
+		}
+		.col-1.register {
+			float: left;
+			width: 40%;
+		}
+		h1 { color: #234465; }
+		.col-1.register h4 { color: #858585; }
+		span.h_reg { color: #234465; }
+		.col-2.login {
+			float: left;
+			width: 40%;
+			margin-left: 5%;
+			background: #234465;
+			color: #fff;
+			padding: 0 15px;
+			height: 221px;
+		}
+		#course_reg div, #course_login div input[type="text"], #course_login div input[type="password"] { margin-bottom: 10px; }
+		input:focus { outline: none;}
+		input#reg_name { outline: none; }
+		input[type="text"], input[type="password"] { padding: 2px; }
+		.bregister {
+			float: right;
+			background: #fbfbfb;
+			padding: 5px 20px;
+			border: 2px solid #234465;
+			color: #234465;
+			font-weight: bold;
+		}
+		.bregister:hover {
+			background: #234465;
+			color: white;
+		}
+		.remember { float: left; }
+		input.blogin {
+			float: right;
+			background: #234465;
+			padding: 5px 30px;
+			border: 2px solid orange;
+			color: #fff;
+		}
+		input.blogin:hover {
+			background: orange;
+			text-shadow: 1px 1px 1px black;
+		}
+		.forgot {
+			clear: both;
+			float: right;
+			margin: 10px 0;
+			font-size: 12px;
+		}
+		.forgot a {
+			font-style: italic;
+			color: #fff;
+		}	
+		.rem_sub { margin: 5px 0; }
+		.red { border-color:red; }
+	</style>
+	<script>
+		$(document).ready(function() {
+			$("input").focusin(function(){
+				if ($(this).val() == "") // Checking the textbox value is empty or not
+				$(this).addClass("red")
+			});
+			$("input").focusout(function(){
+				if ($(this).val() != "")
+				$(this).removeClass("red")
+			});
+			$('#reg_email').focusout(function(){
+				$('#reg_email').filter(function(){
+					var emil=$('#reg_email').val();
+					var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; // Validating the email field
+					if( !emailReg.test( emil ) ) {
+						alert('Please enter valid email');
+						$(this).addClass("red");
+					} else {
+						alert('Thank you for your valid email');
+						$(this).removeClass("red");
+					}
+				})
+			});
+		});
+	</script>
+</head> 
+<body>
+
+<div id="container">
+	<h1>Enter the system</h1>
+	<p>It is necessary to login in your account in order to sign up for a course.</p>
+	<div class="col-1 register">
+		<h4>ARE YOU NEW? <span class="h_reg">REGISTER</span></h4>
+		<form id="course_reg">
+		<div><input type="text" placeholder="User name" id="reg_name" size="40"/></div>
+		<div><input type="text" placeholder="Email" id="reg_email" size="40"/></div>		
+		<div><input type="password" placeholder="Password" id="reg_pass"size="40"/></div>		
+		<div><input type="password" placeholder="Confirm Password" id="reg_cpass" size="40"/></div>		
+		<div><input type="submit" value="Register" class="bregister" size="40"/></div>
+		</form>
+	</div>
+	<div class="col-2 login">
+		<h4>ALREADY A STUDENT? LOGIN</h4>
+		<form id="course_login">
+		<div><input type="text" placeholder="User name" size="40"/></div>
+		<div><input type="password" placeholder="Password" size="40"/></div>
+		<div class="rem_sub">
+			<div class="remember"><input type="checkbox">&nbsp; Remember me?</div>
+			<input type="submit" value="Login" class="blogin">
+		</div>
+		<div class="forgot"><a href="#">Forgot Password?</a></div>
+		</form>
+	</div>
+</div>
+
+</body>
+</html>
